@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class CommentsTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $users = App\User::all();
+        $users->each(function ($user) {
+                $answer = App\Answer::inRandomOrder()->first();
+                $comment = factory(App\Comment::class)->make();
+                $comment->user()->associate($user);
+                $comment->answer()->associate($answer);
+                $comment->save();
+            });
+
+    }
+}
