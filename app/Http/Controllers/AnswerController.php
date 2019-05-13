@@ -3,10 +3,14 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Question;
-use App\Notifications\mail;
-use App\Notifications\UpdatedMailNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Notifications\mail;
+use App\Notifications\UpdatedMailNotification;
+
+
+
+
 class AnswerController extends Controller
 {
     public function __construct()
