@@ -1,7 +1,10 @@
 <?php
 namespace App\Http\Controllers;
+
 use App\Answer;
 use App\Question;
+use App\Notifications\mail;
+use App\Notifications\UpdatedMailNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 class AnswerController extends Controller
@@ -46,6 +49,8 @@ class AnswerController extends Controller
         $Answer->user()->associate(Auth::user());
         $Answer->question()->associate($question);
         $Answer->save();
+        $user = Auth::user();
+        $user->notify(new mail());
         return redirect()->route('questions.show',['question_id' => $question->id])->with('message', 'Saved');
     }
     /**
@@ -87,9 +92,12 @@ class AnswerController extends Controller
             'body.min' => 'Body must be at least 5 characters',
         ]);
 
+        $user = Auth::user();
         $answer = Answer::find($answer);
         $answer->body = $request->body;
         $answer->save();
+        $user->notify(new UpdatedMailNotification());
+
         return redirect()->route('answers.show',['question_id' => $question, 'answer_id' => $answer])->with('message', 'Updated');
     }
     /**
