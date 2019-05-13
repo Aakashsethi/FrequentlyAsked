@@ -44,6 +44,7 @@ class mail extends Notification
         $RequestAns = Request::capture();
         $Path = $RequestAns->path();
         $StringPath = explode("/", $Path);
+
         return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('View Answer',\route('questions.show', $StringPath[1]))
