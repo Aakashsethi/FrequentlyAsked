@@ -12,13 +12,14 @@ class CommentsTableSeeder extends Seeder
     public function run()
     {
         $users = App\User::all();
-        $users->each(function ($user) {
+        for ($i = 1; $i <= 16; $i++) {
+            $users->each(function ($user) {
                 $answer = App\Answer::inRandomOrder()->first();
                 $comment = factory(App\Comment::class)->make();
                 $comment->user()->associate($user);
                 $comment->answer()->associate($answer);
                 $comment->save();
             });
-
+        }
     }
 }
