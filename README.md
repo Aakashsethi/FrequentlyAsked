@@ -1,6 +1,10 @@
 # FrequentlyAsked
 To Run the FAQ Project 
-To run the faq project
+#Link to heroku
+http://freqas.herokuapp.com/
+
+#link to localhost display
+https://docs.google.com/document/d/1hwhLJZtmhsfH7Q1kmPcY9gVwa1EDNr6RG9V96KfkejM/edit?usp=sharing
 
 git clone https://github.com/Aakashsethi/FrequentlyAsked.git
 CD into faqand run composer install
